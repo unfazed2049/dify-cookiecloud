@@ -1,0 +1,64 @@
+identity:
+  name: "cookiecloud"
+  author: "unfazed"
+  label:
+    en_US: "cookiecloud"
+    zh_Hans: "cookiecloud"
+    pt_BR: "cookiecloud"
+    ja_JP: "cookiecloud"
+description:
+  human:
+    en_US: "Decrypt and retrieve cookies from CookieCloud server"
+    zh_Hans: "从 CookieCloud 服务器解密并获取 cookies"
+    pt_BR: "Decrypt and retrieve cookies from CookieCloud server"
+    ja_JP: "CookieCloud サーバーから Cookie を復号化して取得"
+  llm: "Decrypt and retrieve cookies from CookieCloud server using URL, UUID and password. This tool fetches encrypted cookie data from the server and decrypts it."
+parameters:
+  - name: url
+    type: string
+    required: true
+    label:
+      en_US: CookieCloud Server URL
+      zh_Hans: CookieCloud 服务器地址
+      pt_BR: CookieCloud Server URL
+      ja_JP: CookieCloud サーバー URL
+    human_description:
+      en_US: "The base URL of your CookieCloud server (e.g., https://your-server.com)"
+      zh_Hans: "你的 CookieCloud 服务器基础地址（例如：https://your-server.com）"
+      pt_BR: "The base URL of your CookieCloud server (e.g., https://your-server.com)"
+      ja_JP: "CookieCloud サーバーのベース URL（例：https://your-server.com）"
+    llm_description: "The base URL of the CookieCloud server where cookies are stored"
+    form: llm
+  - name: uuid
+    type: string
+    required: true
+    label:
+      en_US: UUID
+      zh_Hans: UUID
+      pt_BR: UUID
+      ja_JP: UUID
+    human_description:
+      en_US: "Your CookieCloud UUID for authentication"
+      zh_Hans: "你的 CookieCloud UUID 用于身份验证"
+      pt_BR: "Your CookieCloud UUID for authentication"
+      ja_JP: "認証用の CookieCloud UUID"
+    llm_description: "The UUID for accessing your CookieCloud data"
+    form: llm
+  - name: password
+    type: string
+    required: true
+    label:
+      en_US: Password
+      zh_Hans: 密码
+      pt_BR: Password
+      ja_JP: パスワード
+    human_description:
+      en_US: "Your CookieCloud password for decryption"
+      zh_Hans: "你的 CookieCloud 解密密码"
+      pt_BR: "Your CookieCloud password for decryption"
+      ja_JP: "復号化用の CookieCloud パスワード"
+    llm_description: "The password used to decrypt the cookie data"
+    form: llm
+extra:
+  python:
+    source: tools/cookiecloud.py

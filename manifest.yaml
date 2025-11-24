@@ -1,0 +1,36 @@
+version: 0.0.1
+type: plugin
+author: unfazed
+name: cookiecloud
+label:
+  en_US: cookiecloud
+  ja_JP: cookiecloud
+  zh_Hans: cookiecloud
+  pt_BR: cookiecloud
+description:
+  en_US: CookieCloud is a small tool for syncing cookies with your self-hosted server, allowing you to synchronize browser cookies and local storage to your phone and cloud.
+  ja_JP: CookieCloud is a small tool for syncing cookies with your self-hosted server, allowing you to synchronize browser cookies and local storage to your phone and cloud.
+  zh_Hans: CookieCloud is a small tool for syncing cookies with your self-hosted server, allowing you to synchronize browser cookies and local storage to your phone and cloud.
+  pt_BR: CookieCloud is a small tool for syncing cookies with your self-hosted server, allowing you to synchronize browser cookies and local storage to your phone and cloud.
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - provider/cookiecloud.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: null
+created_at: 2025-11-21T14:50:13.043190177+08:00
+privacy: PRIVACY.md
+verified: false
