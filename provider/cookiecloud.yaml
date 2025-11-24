@@ -1,12 +1,12 @@
 identity:
-  author: "unfazed"
+  author: "unfazed2049"
   name: "cookiecloud"
   label:
     en_US: "cookiecloud"
     zh_Hans: "cookiecloud"
   description:
-    en_US: "CookieCloud is a small tool for syncing cookies with your self-hosted server, allowing you to synchronize browser cookies and local storage to your phone and cloud."
-    zh_Hans: "CookieCloud is a small tool for syncing cookies with your self-hosted server, allowing you to synchronize browser cookies and local storage to your phone and cloud."
+    en_US: "CookieCloud is a small tool for syncing cookies with your self-hosted server, allowing you to synchronize browser cookies and local storage to your phone and cloud"
+    zh_Hans: "CookieCloud 是一个用于将 cookie 与自托管服务器同步的小工具，允许您将浏览器 cookie 和本地存储同步到您的手机和云端"
   icon: "icon.svg"
 
 tools:

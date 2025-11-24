@@ -1,6 +1,6 @@
-version: 0.0.1
+version: 0.0.2
 type: plugin
-author: unfazed
+author: unfazed2049
 name: cookiecloud
 label:
   en_US: cookiecloud
