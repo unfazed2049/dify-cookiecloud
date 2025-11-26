@@ -9,6 +9,44 @@ identity:
     zh_Hans: "CookieCloud 是一个用于将 cookie 与自托管服务器同步的小工具，允许您将浏览器 cookie 和本地存储同步到您的手机和云端"
   icon: "icon.svg"
 
+credentials_for_provider:
+  url:
+    type: text-input
+    required: true
+    label:
+      en_US: CookieCloud Server URL
+      zh_Hans: CookieCloud 服务器地址
+    placeholder:
+      en_US: "https://your-server.com"
+      zh_Hans: "https://your-server.com"
+    help:
+      en_US: "The base URL of your CookieCloud server"
+      zh_Hans: "你的 CookieCloud 服务器基础地址"
+  uuid:
+    type: text-input
+    required: true
+    label:
+      en_US: UUID
+      zh_Hans: UUID
+    placeholder:
+      en_US: "Enter your CookieCloud UUID"
+      zh_Hans: "输入你的 CookieCloud UUID"
+    help:
+      en_US: "Your CookieCloud UUID for authentication"
+      zh_Hans: "你的 CookieCloud UUID 用于身份验证"
+  password:
+    type: secret-input
+    required: true
+    label:
+      en_US: Password
+      zh_Hans: 密码
+    placeholder:
+      en_US: "Enter your CookieCloud password"
+      zh_Hans: "输入你的 CookieCloud 密码"
+    help:
+      en_US: "Your CookieCloud password for decryption"
+      zh_Hans: "你的 CookieCloud 解密密码"
+
 tools:
   - tools/cookiecloud.yaml
 extra:

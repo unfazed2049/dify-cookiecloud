@@ -3,14 +3,34 @@ from typing import Any
 from dify_plugin import ToolProvider
 from dify_plugin.errors.tool import ToolProviderCredentialValidationError
 
+from utils.cookiecloud_client import fetch_cookiecloud_data
+
 
 class CookiecloudProvider(ToolProvider):
-    
+
     def _validate_credentials(self, credentials: dict[str, Any]) -> None:
         try:
-            """
-            IMPLEMENT YOUR VALIDATION HERE
-            """
+            # Get credentials
+            url = credentials.get("url", "").rstrip('/')
+            uuid = credentials.get("uuid", "")
+            password = credentials.get("password", "")
+
+            # Validate required parameters
+            if not url:
+                raise ToolProviderCredentialValidationError("CookieCloud server URL is required.")
+            if not uuid:
+                raise ToolProviderCredentialValidationError("UUID is required.")
+            if not password:
+                raise ToolProviderCredentialValidationError("Password is required.")
+
+            # Try to fetch data to validate credentials (only check if API call succeeds)
+            try:
+                fetch_cookiecloud_data(url, uuid)
+            except Exception as e:
+                raise ToolProviderCredentialValidationError(f"Error fetching data from server: {str(e)}")
+
+        except ToolProviderCredentialValidationError:
+            raise
         except Exception as e:
             raise ToolProviderCredentialValidationError(str(e))
 

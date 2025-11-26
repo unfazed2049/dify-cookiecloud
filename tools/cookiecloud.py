@@ -3,12 +3,13 @@ from typing import Any
 import hashlib
 import json
 from base64 import b64decode
-import requests
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
+
+from utils.cookiecloud_client import fetch_cookiecloud_data
 
 
 class CookiecloudTool(Tool):
@@ -53,39 +54,21 @@ class CookiecloudTool(Tool):
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         try:
-            # Get required parameters
-            url = tool_parameters.get("url", "").rstrip('/')
-            uuid = tool_parameters.get("uuid", "")
-            password = tool_parameters.get("password", "")
+            # Get credentials from runtime (configured at provider level)
+            url = self.runtime.credentials.get("url", "").rstrip('/')
+            uuid = self.runtime.credentials.get("uuid", "")
+            password = self.runtime.credentials.get("password", "")
 
-            # Validate required parameters
-            if not url:
-                yield self.create_text_message("Error: CookieCloud server URL is required.")
-                return
-            if not uuid:
-                yield self.create_text_message("Error: UUID is required.")
-                return
-            if not password:
-                yield self.create_text_message("Error: Password is required.")
+            # Validate credentials (should always be present if provider validation passed)
+            if not url or not uuid or not password:
+                yield self.create_text_message("Error: CookieCloud credentials not configured properly.")
                 return
 
-            # Step 1: Fetch encrypted data from CookieCloud server
-            fetch_url = f"{url}/get/{uuid}"
-
+            # Step 1: Fetch encrypted data from CookieCloud server using helper function
             try:
-                response = requests.get(fetch_url, timeout=10)
-                response.raise_for_status()
-                data = response.json()
-            except requests.RequestException as e:
+                data = fetch_cookiecloud_data(url, uuid)
+            except Exception as e:
                 yield self.create_text_message(f"Error fetching data from server: {str(e)}")
-                return
-            except json.JSONDecodeError:
-                yield self.create_text_message("Error: Invalid JSON response from server.")
-                return
-
-            # Check if encrypted data exists
-            if 'encrypted' not in data:
-                yield self.create_text_message("Error: No encrypted data found in server response.")
                 return
 
             # Step 2: Decrypt the data
