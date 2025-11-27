@@ -1,0 +1,41 @@
+identity:
+  name: "get_cookie_by_domain"
+  author: "unfazed"
+  label:
+    en_US: "Get Cookie by Domain"
+    zh_Hans: "按域名获取 Cookie"
+description:
+  human:
+    en_US: "Get specific cookies from a domain"
+    zh_Hans: "从指定域名获取特定的 cookies"
+  llm: "Get specific cookies by domain and keys from CookieCloud server. This tool fetches encrypted cookie data, decrypts it, filters by domain, and returns only the specified cookie keys."
+parameters:
+  - name: domain
+    type: string
+    required: true
+    label:
+      en_US: Domain
+      zh_Hans: 域名
+      pt_BR: Domain
+      ja_JP: ドメイン
+    human_description:
+      en_US: "The domain to filter cookies (e.g., example.com)"
+      zh_Hans: "要过滤的域名（例如：example.com）"
+    llm_description: "The domain name to filter cookies from the decrypted data"
+    form: llm
+  - name: keys
+    type: string
+    required: true
+    label:
+      en_US: Cookie Keys
+      zh_Hans: Cookie 键名
+      pt_BR: Cookie Keys
+      ja_JP: Cookie キー
+    human_description:
+      en_US: "Comma-separated cookie keys to retrieve (e.g., session_id,auth_token)"
+      zh_Hans: "要获取的 cookie 键名，使用英文逗号分隔（例如：session_id,auth_token）"
+    llm_description: "Comma-separated list of cookie key names to extract from the filtered domain cookies"
+    form: llm
+extra:
+  python:
+    source: tools/get_cookie_by_domain.py

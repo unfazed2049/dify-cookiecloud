@@ -1,0 +1,15 @@
+identity:
+  name: "get_raw_cookies"
+  author: "unfazed"
+  label:
+    en_US: "Get Raw Cookies"
+    zh_Hans: "获取原始 Cookies"
+description:
+  human:
+    en_US: "Decrypt and retrieve all cookies from CookieCloud server"
+    zh_Hans: "从 CookieCloud 服务器解密并获取所有 cookies"
+  llm: "Decrypt and retrieve all raw cookies from CookieCloud server. This tool fetches encrypted cookie data from the server and decrypts it using configured credentials, returning all cookie data."
+parameters: []
+extra:
+  python:
+    source: tools/get_raw_cookies.py
